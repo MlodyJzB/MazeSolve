@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../MazeSolve/MazeSolve.h"
+#include "../MazeSolve/MazeIO.h"
 
 #define N 2
 #define M 2
@@ -15,22 +17,24 @@ int main()
 
 	board[0][0] = 0;
 	board[0][1] = 1;
-	board[1][0] = 3;
-	board[1][1] = 0;
+	board[1][0] = 1;
+	board[1][1] = 3;
 
-	struct Maze *maze = (struct Maze*)malloc(sizeof (struct Maze));
-	maze->board = board;
-	maze->startN = 0;
-	maze->startM = 0;
-	maze->n = N;
-	maze->m = M;
+	struct Point *startPointP = (struct Point*)malloc(sizeof (struct Point));
+	initPoint(startPointP, 0, 0);
 
-	int isSolved = solveMaze(maze, maze->startN, maze->startM);
+	struct Maze *mazeP = (struct Maze*)malloc(sizeof (struct Maze));
+	mazeP->board = board;
+	mazeP->startPointP = startPointP;
+	mazeP->width = N;
+	mazeP->height = M;
+
+	int isSolved = solveMaze(mazeP, mazeP->startPointP);
 
 	for (int i = 0; i < N; i++)
 	{
 		free(board[i]);
 	}
 	free(board);
-	free(maze);
+	free(mazeP);
 }
