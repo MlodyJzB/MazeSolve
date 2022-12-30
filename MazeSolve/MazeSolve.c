@@ -10,34 +10,38 @@
 #define TRUE 1
 #define FALSE 0
 
-int solveMaze(int **maze, int startN, int startM, int n, int m) {
+int solveMaze(struct Maze* maze, int startN, int startM) {
+	int** board = maze->board;
+	int n = maze->n;
+	int m = maze->m;
+
 	if (inBoundaries(startN, startM, n, m) == FALSE)
 		return FALSE;
 
-	if (maze[startN][startM] == PLAYER)
+	if (board[startN][startM] == PLAYER)
 		return TRUE;
-	if (maze[startN][startM] == WALL || maze[startN][startM] == ROUTE)
+	if (board[startN][startM] == WALL || board[startN][startM] == ROUTE)
 		return FALSE;
 
-	maze[startN][startM] = ROUTE;
+	board[startN][startM] = ROUTE;
 
-	int up = solveMaze(maze, startN - 1, startM, n, m);
+	int up = solveMaze(maze, startN - 1, startM);
 	if (up == TRUE)
 		return TRUE;
 
-	int down = solveMaze(maze, startN + 1, startM, n, m);
+	int down = solveMaze(maze, startN + 1, startM);
 	if (down == TRUE)
 		return TRUE;
 
-	int left = solveMaze(maze, startN, startM - 1, n, m);
+	int left = solveMaze(maze, startN, startM - 1);
 	if (left == TRUE)
 		return TRUE;
 
-	int right = solveMaze(maze, startN, startM + 1, n, m);
+	int right = solveMaze(maze, startN, startM + 1);
 	if (right == TRUE)
 		return TRUE;
 
-	maze[startN][startM] = EMPTY;
+	board[startN][startM] = EMPTY;
 	return FALSE;
 }
 

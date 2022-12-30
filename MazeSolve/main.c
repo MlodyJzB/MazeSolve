@@ -7,22 +7,30 @@
 
 int main()
 {
-	int** maze =(int**)malloc(N * sizeof *maze);
+	int** board =(int**)malloc(N * sizeof * board);
 	for (int i = 0; i < N; i++)
 	{
-		maze[i] = (int*)malloc(M * sizeof *maze[i]);
+		board[i] = (int*)malloc(M * sizeof * board[i]);
 	}
 
-	maze[0][0] = 0;
-	maze[0][1] = 1;
-	maze[1][0] = 3;
-	maze[1][1] = 0;
+	board[0][0] = 0;
+	board[0][1] = 1;
+	board[1][0] = 3;
+	board[1][1] = 0;
 
-	int isSolved = solveMaze(maze, 0, 0, N, M);
+	struct Maze *maze = (struct Maze*)malloc(sizeof (struct Maze));
+	maze->board = board;
+	maze->startN = 0;
+	maze->startM = 0;
+	maze->n = N;
+	maze->m = M;
+
+	int isSolved = solveMaze(maze, maze->startN, maze->startM);
 
 	for (int i = 0; i < N; i++)
 	{
-		free(maze[i]);
+		free(board[i]);
 	}
+	free(board);
 	free(maze);
 }
