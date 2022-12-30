@@ -11,34 +11,38 @@
 #define FALSE 0
 
 int solveMaze(int **maze, int startN, int startM, int n, int m) {
-	if ((startN < 0) || (startM < 0)) return FALSE;
-	if ((startN >= n) || (startM >= m)) return FALSE;
-
-	if (maze[startN][startM] == PLAYER) {
-		return TRUE;
-	}
-	if (maze[startN][startM] == WALL || maze[startN][startM] == ROUTE) {
+	if (inBoundaries(startN, startM, n, m) == FALSE)
 		return FALSE;
-	}
+
+	if (maze[startN][startM] == PLAYER)
+		return TRUE;
+	if (maze[startN][startM] == WALL || maze[startN][startM] == ROUTE)
+		return FALSE;
 
 	maze[startN][startM] = ROUTE;
+
 	int up = solveMaze(maze, startN - 1, startM, n, m);
-	if (up == TRUE) {
+	if (up == TRUE)
 		return TRUE;
-	}
+
 	int down = solveMaze(maze, startN + 1, startM, n, m);
-	if (down == TRUE) {
+	if (down == TRUE)
 		return TRUE;
-	}
+
 	int left = solveMaze(maze, startN, startM - 1, n, m);
-	if (left == TRUE) {
+	if (left == TRUE)
 		return TRUE;
-	}
+
 	int right = solveMaze(maze, startN, startM + 1, n, m);
-	if (right == TRUE) {
+	if (right == TRUE)
 		return TRUE;
-	}
 
 	maze[startN][startM] = EMPTY;
 	return FALSE;
+}
+
+int inBoundaries(int startN, int startM, int n, int m) {
+	if ((startN < 0) || (startM < 0)) return FALSE;
+	if ((startN >= n) || (startM >= m)) return FALSE;
+	return TRUE;
 }

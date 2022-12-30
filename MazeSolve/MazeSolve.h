@@ -5,5 +5,6 @@
 #include <stdlib.h>
 
 int solveMaze(int** maze, int startN, int startM, int n, int m);
+int inBoundaries(int startN, int startM, int n, int m);
 
 #endif /* MazeSolve.h */

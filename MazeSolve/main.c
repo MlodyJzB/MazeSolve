@@ -15,8 +15,8 @@ int main()
 
 	maze[0][0] = 0;
 	maze[0][1] = 1;
-	maze[1][0] = 1;
-	maze[1][1] = 3;
+	maze[1][0] = 3;
+	maze[1][1] = 0;
 
 	int isSolved = solveMaze(maze, 0, 0, N, M);
 
