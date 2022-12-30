@@ -13,19 +13,17 @@
 #define FALSE 0
 
 int solveMaze(struct Maze* mazeP, struct Point* startPointP) {
-	int** board = mazeP->board;
-	int x = startPointP -> x;
-	int y = startPointP -> y;
-
-	if (inBoundaries(x, y, mazeP->width, mazeP->height) == FALSE)
+	if (inBoundaries(startPointP, mazeP) == FALSE)
 		return FALSE;
 
-	if (board[x][y] == PLAYER)
+	int x = startPointP->x;
+	int y = startPointP->y;
+	if (mazeP->board[x][y] == PLAYER)
 		return TRUE;
-	if (board[x][y] == WALL || board[x][y] == ROUTE)
+	if (mazeP->board[x][y] == WALL || mazeP->board[x][y] == ROUTE)
 		return FALSE;
 
-	board[x][y] = ROUTE;
+	mazeP->board[x][y] = ROUTE;
 	struct Point nextPoint;
 
 	initPoint(&nextPoint, x, y-1);
@@ -48,12 +46,14 @@ int solveMaze(struct Maze* mazeP, struct Point* startPointP) {
 	if (right == TRUE)
 		return TRUE;
 
-	board[x][y] = EMPTY;
+	mazeP->board[x][y] = EMPTY;
 	return FALSE;
 }
 
-int inBoundaries(int x, int y, int width, int height) {
-	if ((x < 0) || (y < 0)) return FALSE;
-	if ((x >= width) || (y >= height)) return FALSE;
+int inBoundaries(struct Point* pointP, struct Maze* mazeP) {
+	if ((pointP->x < 0) || (pointP->y < 0)) 
+		return FALSE;
+	if ((pointP->x >= mazeP->width) || (pointP->y >= mazeP->height)) 
+		return FALSE;
 	return TRUE;
 }
