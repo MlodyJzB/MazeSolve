@@ -27,23 +27,19 @@ int solveMaze(struct Maze* mazeP, struct Point* startPointP) {
 	struct Point nextPoint;
 
 	initPoint(&nextPoint, x, y-1);
-	int up = solveMaze(mazeP, &nextPoint);
-	if (up == TRUE)
+	if(solveMaze(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x, y+1);
-	int down = solveMaze(mazeP, &nextPoint);
-	if (down == TRUE)
+	if (solveMaze(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x - 1, y);
-	int left = solveMaze(mazeP, &nextPoint);
-	if (left == TRUE)
+	if (solveMaze(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x + 1, y);
-	int right = solveMaze(mazeP, &nextPoint);
-	if (right == TRUE)
+	if (solveMaze(mazeP, &nextPoint))
 		return TRUE;
 
 	mazeP->board[x][y] = EMPTY;
