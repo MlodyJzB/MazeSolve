@@ -10,7 +10,7 @@
 #define TRUE 1
 #define FALSE 0
 
-int solveMaze(int maze[6][6], int startN, int startM, int n, int m) {
+int solveMaze(int **maze, int startN, int startM, int n, int m) {
 	if ((startN < 0) || (startM < 0)) return FALSE;
 	if ((startN >= n) || (startM >= m)) return FALSE;
 

@@ -2,19 +2,27 @@
 #include <stdlib.h>
 #include "../MazeSolve/MazeSolve.h"
 
-#define N 6
-#define M 6
+#define N 2
+#define M 2
 
 int main()
 {
-	int maze[N][M] = {
-		{1, 0, 1, 1, 1, 1},
-		{1, 0, 0, 0, 1, 1},
-		{1, 0, 1, 0, 0, 0}, 
-		{1, 0, 1, 0, 1, 1},
-		{1, 0, 1, 0, 1, 1},
-		{3, 0, 1, 0, 0, 0},
-	};
+	int** maze =(int**)malloc(N * sizeof *maze);
+	for (int i = 0; i < N; i++)
+	{
+		maze[i] = (int*)malloc(M * sizeof *maze[i]);
+	}
 
-	int isSolved = solveMaze(maze, 0, 1, N, M);
+	maze[0][0] = 0;
+	maze[0][1] = 1;
+	maze[1][0] = 1;
+	maze[1][1] = 3;
+
+	int isSolved = solveMaze(maze, 0, 0, N, M);
+
+	for (int i = 0; i < N; i++)
+	{
+		free(maze[i]);
+	}
+	free(maze);
 }
