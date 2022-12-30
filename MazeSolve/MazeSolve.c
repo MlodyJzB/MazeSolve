@@ -12,7 +12,7 @@
 #define TRUE 1
 #define FALSE 0
 
-int solveMaze(struct Maze* mazeP, struct Point* startPointP) {
+int findRouteFromStart(struct Maze* mazeP, struct Point* startPointP) {
 	if (inBoundaries(startPointP, mazeP) == FALSE)
 		return FALSE;
 
@@ -27,19 +27,19 @@ int solveMaze(struct Maze* mazeP, struct Point* startPointP) {
 	struct Point nextPoint;
 
 	initPoint(&nextPoint, x, y-1);
-	if(solveMaze(mazeP, &nextPoint))
+	if(findRouteFromStart(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x, y+1);
-	if (solveMaze(mazeP, &nextPoint))
+	if (findRouteFromStart(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x - 1, y);
-	if (solveMaze(mazeP, &nextPoint))
+	if (findRouteFromStart(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x + 1, y);
-	if (solveMaze(mazeP, &nextPoint))
+	if (findRouteFromStart(mazeP, &nextPoint))
 		return TRUE;
 
 	mazeP->board[x][y] = EMPTY;
