@@ -4,15 +4,15 @@
 #include "../MazeSolve/MazeSolve.h"
 #include "../MazeSolve/MazeIO.h"
 
-#define N 2
-#define M 2
+#define W 2
+#define H 2
 
 int main()
 {
-	int** board =(int**)malloc(N * sizeof * board);
+	int** board =(int**)malloc(W * sizeof * board);
 	for (int i = 0; i < N; i++)
 	{
-		board[i] = (int*)malloc(M * sizeof * board[i]);
+		board[i] = (int*)malloc(H * sizeof * board[i]);
 	}
 
 	board[0][0] = 0;
@@ -24,10 +24,7 @@ int main()
 	initPoint(exitPointP, 0, 0);
 
 	struct Maze *mazeP = (struct Maze*)malloc(sizeof (struct Maze));
-	mazeP->board = board;
-	mazeP->exitPointP = exitPointP;
-	mazeP->width = N;
-	mazeP->height = M;
+	initMaze(mazeP, exitPointP, board, W, H);
 
 	int isSolved = findRouteFromExit(mazeP, mazeP->exitPointP);
 
