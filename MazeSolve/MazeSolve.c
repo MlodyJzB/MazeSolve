@@ -12,12 +12,12 @@
 #define TRUE 1
 #define FALSE 0
 
-int findRouteFromStart(struct Maze* mazeP, struct Point* startPointP) {
-	if (inBoundaries(startPointP, mazeP) == FALSE)
+int findRouteFromExit(struct Maze* mazeP, struct Point* exitPointP) {
+	if (inBoundaries(exitPointP, mazeP) == FALSE)
 		return FALSE;
 
-	int x = startPointP->x;
-	int y = startPointP->y;
+	int x = exitPointP->x;
+	int y = exitPointP->y;
 	if (mazeP->board[x][y] == PLAYER)
 		return TRUE;
 	if (mazeP->board[x][y] == WALL || mazeP->board[x][y] == ROUTE)
@@ -27,19 +27,19 @@ int findRouteFromStart(struct Maze* mazeP, struct Point* startPointP) {
 	struct Point nextPoint;
 
 	initPoint(&nextPoint, x, y-1);
-	if(findRouteFromStart(mazeP, &nextPoint))
+	if(findRouteFromExit(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x, y+1);
-	if (findRouteFromStart(mazeP, &nextPoint))
+	if (findRouteFromExit(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x - 1, y);
-	if (findRouteFromStart(mazeP, &nextPoint))
+	if (findRouteFromExit(mazeP, &nextPoint))
 		return TRUE;
 
 	initPoint(&nextPoint, x + 1, y);
-	if (findRouteFromStart(mazeP, &nextPoint))
+	if (findRouteFromExit(mazeP, &nextPoint))
 		return TRUE;
 
 	mazeP->board[x][y] = EMPTY;

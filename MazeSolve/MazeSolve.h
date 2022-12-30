@@ -6,7 +6,7 @@
 
 #include "MazeIO.h"
 
-int findRouteFromStart(struct Maze* mazeP, struct Point* startPointP);
+int findRouteFromExit(struct Maze* mazeP, struct Point* startPointP);
 int inBoundaries(struct Point* pointP, struct Maze* mazeP);
 
 #endif /* MazeSolve.h */

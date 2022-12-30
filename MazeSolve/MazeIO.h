@@ -6,7 +6,7 @@
 
 struct Maze {
 	int** board;
-	struct Point* startPointP;
+	struct Point* exitPointP;
 	int width;
 	int height;
 };

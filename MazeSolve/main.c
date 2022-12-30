@@ -20,16 +20,16 @@ int main()
 	board[1][0] = 1;
 	board[1][1] = 3;
 
-	struct Point *startPointP = (struct Point*)malloc(sizeof (struct Point));
-	initPoint(startPointP, 0, 0);
+	struct Point *exitPointP = (struct Point*)malloc(sizeof (struct Point));
+	initPoint(exitPointP, 0, 0);
 
 	struct Maze *mazeP = (struct Maze*)malloc(sizeof (struct Maze));
 	mazeP->board = board;
-	mazeP->startPointP = startPointP;
+	mazeP->exitPointP = exitPointP;
 	mazeP->width = N;
 	mazeP->height = M;
 
-	int isSolved = solveMaze(mazeP, mazeP->startPointP);
+	int isSolved = findRouteFromExit(mazeP, mazeP->exitPointP);
 
 	for (int i = 0; i < N; i++)
 	{
