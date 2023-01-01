@@ -26,7 +26,7 @@ void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP)
 
 	int fileLength = fileLen(mazeTxtP);
 
-	int rowsAmount = 1;
+	int rowsAmount = 0;
 	do {
 		rowsAmount++;
 		if ((fseek(mazeTxtP, (long)firstLineLen, SEEK_CUR) != 0)||(ftell(mazeTxtP)>fileLength)) {
@@ -41,7 +41,7 @@ void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP)
 		}
 	} while (curC != EOF);
 
-	fseek(mazeTxtP, (long)firstLineLen, SEEK_SET);
+	fseek(mazeTxtP, 0, SEEK_SET);
 	*widthDestP = firstLineLen;
 	*heightDestP = rowsAmount;
 }
@@ -52,4 +52,19 @@ int fileLen(FILE* f) {
 	fseek(f, 0, SEEK_SET);
 
 	return len;
+}
+
+char** readBoard(FILE* mazeTxtP, int width, int height) {
+	char** board = (char**)malloc(width * sizeof * board);
+	for (int i = 0; i < width; i++)
+	{
+		board[i] = (char*)malloc(height * sizeof * board[i]);
+	}
+	for (int y = 0; y < height; y++){
+		for (int x = 0; x < width; x++) {
+			board[x][y] = getc(mazeTxtP);
+		}
+		getc(mazeTxtP);
+	}
+	return board;
 }

@@ -42,6 +42,7 @@ int main()
 		exit(1);
 	}
 	mazeCheckAndSizeFromFile(mazeTxtP, &w, &l);
-	printf("w: %d, hs: %d", w, l);
+	char** board = readBoard(mazeTxtP, w, l);
+	printf("%d", board[0][0]);
 	fclose(mazeTxtP);
 }

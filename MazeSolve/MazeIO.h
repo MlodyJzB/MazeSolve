@@ -24,4 +24,6 @@ void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP)
 
 int fileLen(FILE* f);
 
+char** readBoard(FILE* mazeTxtP, int width, int height);
+
 #endif /* MazeIO.h */
