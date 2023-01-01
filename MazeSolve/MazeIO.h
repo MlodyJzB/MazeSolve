@@ -20,4 +20,8 @@ void initPoint(struct Point* pointP, int x, int y);
 
 void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int width, int height);
 
+void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP);
+
+int fileLen(FILE* f);
+
 #endif /* MazeIO.h */

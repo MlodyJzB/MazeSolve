@@ -9,7 +9,7 @@
 
 int main()
 {
-	int** board =(int**)malloc(W * sizeof * board);
+	/*int** board =(int**)malloc(W * sizeof * board);
 	for (int i = 0; i < N; i++)
 	{
 		board[i] = (int*)malloc(H * sizeof * board[i]);
@@ -33,5 +33,15 @@ int main()
 		free(board[i]);
 	}
 	free(board);
-	free(mazeP);
+	free(mazeP);*/
+	int w;
+	int l;
+	FILE* mazeTxtP;
+	if (fopen_s(&mazeTxtP, "maze.txt", "r") != 0) {
+		printf("Missing maze.txt");
+		exit(1);
+	}
+	mazeCheckAndSizeFromFile(mazeTxtP, &w, &l);
+	printf("w: %d, hs: %d", w, l);
+	fclose(mazeTxtP);
 }
