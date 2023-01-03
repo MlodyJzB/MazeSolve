@@ -8,6 +8,15 @@ void initPoint(struct Point* pointP, int x, int y) {
 	pointP->y = y;
 }
 
+struct Maze* readMaze(FILE* mazeTxtP) {
+	int width, height;
+	boardSizeFromFile(mazeTxtP, &width, &height);
+	char** board = readBoard(mazeTxtP, width, height);
+
+	struct Maze* mazeP = (struct Maze*)malloc(sizeof(struct Maze));
+	return mazeP;
+}
+
 void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int width, int height) {
 	mazeP->board = board;
 	mazeP->exitPointP = exitPointP;

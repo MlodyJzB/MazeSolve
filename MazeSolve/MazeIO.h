@@ -18,6 +18,8 @@ struct Point {
 
 void initPoint(struct Point* pointP, int x, int y);
 
+struct Maze* readMaze(FILE* mazeTxtP);
+
 void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int width, int height);
 
 void boardSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP);
