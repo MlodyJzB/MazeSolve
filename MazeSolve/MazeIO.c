@@ -3,6 +3,9 @@
 
 #include "../MazeSolve/MazeIO.h"
 
+#define TRUE 1
+#define FALSE 0
+
 void initPoint(struct Point* pointP, int x, int y) {
 	pointP->x = x;
 	pointP->y = y;
@@ -11,7 +14,9 @@ void initPoint(struct Point* pointP, int x, int y) {
 struct Maze* readMaze(FILE* mazeTxtP) {
 	int width, height;
 	boardSizeFromFile(mazeTxtP, &width, &height);
-	char** board = readBoard(mazeTxtP, width, height);
+
+	struct Point* exitP = (struct Point*)malloc(sizeof(struct Point));
+	char** board = readBoard(mazeTxtP, width, height, &exitP);
 
 	struct Maze* mazeP = (struct Maze*)malloc(sizeof(struct Maze));
 	return mazeP;
@@ -19,7 +24,7 @@ struct Maze* readMaze(FILE* mazeTxtP) {
 
 void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int width, int height) {
 	mazeP->board = board;
-	mazeP->exitPointP = exitPointP;
+	mazeP->exitP = exitPointP;
 	mazeP->width = width;
 	mazeP->height = height;
 }
@@ -63,7 +68,7 @@ int fileLen(FILE* f) {
 	return len;
 }
 
-char** readBoard(FILE* mazeTxtP, int width, int height) {
+char** readBoard(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP) {
 	char** board = (char**)malloc(width * sizeof * board);
 	for (int i = 0; i < width; i++)
 	{
@@ -72,8 +77,21 @@ char** readBoard(FILE* mazeTxtP, int width, int height) {
 	for (int y = 0; y < height; y++){
 		for (int x = 0; x < width; x++) {
 			board[x][y] = getc(mazeTxtP);
+
+			struct Point* pP = (struct Point*)malloc(sizeof(struct Point));
+			initPoint(pP, x, y);
+			if (onBoarder(pP, width, height) && board[x][y] == ' ')
+				*exitPointDestPP = pP;
+			else
+				free(pP);
 		}
 		getc(mazeTxtP);
 	}
 	return board;
+}
+
+int onBoarder(struct Point* pP, int width, int height) {
+	if (pP->x == 0 || pP->y == 0 || pP->x == (width - 1) || pP->y == (height - 1))
+		return TRUE;
+	return FALSE;
 }

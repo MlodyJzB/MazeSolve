@@ -34,7 +34,7 @@ int main()
 	}
 	free(board);
 	free(mazeP);*/
-	int w;
+	/*int w;
 	int l;
 	FILE* mazeTxtP;
 	if (fopen_s(&mazeTxtP, "maze.txt", "r") != 0) {
@@ -44,5 +44,5 @@ int main()
 	mazeCheckAndSizeFromFile(mazeTxtP, &w, &l);
 	char** board = readBoard(mazeTxtP, w, l);
 	printf("%d", board[0][0]);
-	fclose(mazeTxtP);
+	fclose(mazeTxtP);*/
 }
