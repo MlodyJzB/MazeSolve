@@ -16,9 +16,10 @@ struct Maze* readMaze(FILE* mazeTxtP) {
 	boardSizeFromFile(mazeTxtP, &width, &height);
 
 	struct Point* exitP = (struct Point*)malloc(sizeof(struct Point));
-	char** board = readBoard(mazeTxtP, width, height, &exitP);
+	char** board = readBoardAndExit(mazeTxtP, width, height, &exitP);
 
 	struct Maze* mazeP = (struct Maze*)malloc(sizeof(struct Maze));
+	initMaze(mazeP, exitP, board, width, height);
 	return mazeP;
 }
 
@@ -68,7 +69,7 @@ int fileLen(FILE* f) {
 	return len;
 }
 
-char** readBoard(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP) {
+char** readBoardAndExit(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP) {
 	char** board = (char**)malloc(width * sizeof * board);
 	for (int i = 0; i < width; i++)
 	{

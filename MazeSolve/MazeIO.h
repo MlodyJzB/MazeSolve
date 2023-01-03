@@ -26,7 +26,7 @@ void boardSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP);
 
 int fileLen(FILE* f);
 
-char** readBoard(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP);
+char** readBoardAndExit(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP);
 
 int onBoarder(struct Point* pP, int width, int height);
 

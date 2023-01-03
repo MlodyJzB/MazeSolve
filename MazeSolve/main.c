@@ -45,4 +45,11 @@ int main()
 	char** board = readBoard(mazeTxtP, w, l);
 	printf("%d", board[0][0]);
 	fclose(mazeTxtP);*/
+	FILE* mazeTxtP;
+	if (fopen_s(&mazeTxtP, "maze.txt", "r") != 0) {
+		printf("Missing maze.txt");
+		exit(1);
+	}
+	struct Maze* maze= readMaze(mazeTxtP);
+	printf("x = %d, y = %d", maze->exitP->x, maze->exitP->y);
 }
