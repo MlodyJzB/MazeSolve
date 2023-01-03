@@ -15,7 +15,7 @@ void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int wid
 	mazeP->height = height;
 }
 
-void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP) {
+void boardSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP) {
 	int firstLineLen = 0;
 	char curC;
 	do {
@@ -29,7 +29,7 @@ void mazeCheckAndSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP)
 	int rowsAmount = 0;
 	do {
 		rowsAmount++;
-		if ((fseek(mazeTxtP, (long)firstLineLen, SEEK_CUR) != 0)||(ftell(mazeTxtP)>fileLength)) {
+		if ((fseek(mazeTxtP, (long)firstLineLen, SEEK_CUR) != 0) || (ftell(mazeTxtP) > fileLength)) {
 			printf("Error: Different size of lines in maze.txt file!");
 			exit(1);
 		}
