@@ -7,8 +7,7 @@
 struct Maze {
 	int** board;
 	struct Point* exitP;
-	int width;
-	int height;
+	struct Size* sizeP;
 };
 
 struct Point {
@@ -16,18 +15,23 @@ struct Point {
 	int y;
 };
 
+struct Size {
+	int width;
+	int height;
+};
+
 void initPoint(struct Point* pointP, int x, int y);
 
 struct Maze* readMaze(FILE* mazeTxtP);
 
-void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, int width, int height);
+void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, struct size* sizeP);
 
-void boardSizeFromFile(FILE* mazeTxtP, int* widthDestP, int* heightDestP);
+struct Size* boardSizeFromFile(FILE* mazeTxtP);
 
 int fileLen(FILE* f);
 
-char** readBoardAndExit(FILE* mazeTxtP, int width, int height, struct Point** exitPointDestPP);
+char** readBoardAndExit(FILE* mazeTxtP, struct Size* sizeP, struct Point** exitPointDestPP);
 
-int onBoarder(struct Point* pP, int width, int height);
+int onBoarder(struct Point* pP, struct Size* sP);
 
 #endif /* MazeIO.h */

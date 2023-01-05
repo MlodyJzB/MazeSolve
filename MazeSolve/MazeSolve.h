@@ -8,6 +8,6 @@
 
 int findRouteFromExit(struct Maze* mazeP, struct Point* startPointP);
 
-int inBoundaries(struct Point* pointP, struct Maze* mazeP);
+int inBoundaries(struct Point* pointP, struct Size* sizeP);
 
 #endif /* MazeSolve.h */

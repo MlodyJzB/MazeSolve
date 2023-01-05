@@ -13,7 +13,7 @@
 #define FALSE 0
 
 int findRouteFromExit(struct Maze* mazeP, struct Point* exitPointP) {
-	if (inBoundaries(exitPointP, mazeP) == FALSE)
+	if (inBoundaries(exitPointP, mazeP->sizeP) == FALSE)
 		return FALSE;
 
 	int x = exitPointP->x;
@@ -46,10 +46,10 @@ int findRouteFromExit(struct Maze* mazeP, struct Point* exitPointP) {
 	return FALSE;
 }
 
-int inBoundaries(struct Point* pointP, struct Maze* mazeP) {
+int inBoundaries(struct Point* pointP, struct Size* sizeP) {
 	if ((pointP->x < 0) || (pointP->y < 0)) 
 		return FALSE;
-	if ((pointP->x >= mazeP->width) || (pointP->y >= mazeP->height)) 
+	if ((pointP->x >= sizeP->width) || (pointP->y >= sizeP->height)) 
 		return FALSE;
 	return TRUE;
 }
