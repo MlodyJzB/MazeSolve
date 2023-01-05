@@ -26,7 +26,7 @@ int main()
 		printMazeBoard(mazeP);
 	}
 	else {
-		printf("It is impossible to solve the given maze!");
+		printf("It is impossible to solve the given maze!\n");
 	}
 
 	freeMaze(mazeP);
