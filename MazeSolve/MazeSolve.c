@@ -4,10 +4,10 @@
 #include "../MazeSolve/MazeSolve.h"
 #include "../MazeSolve/MazeIO.h"
 
-#define EMPTY 0
-#define WALL 1
-#define ROUTE 2
-#define PLAYER 3
+#define EMPTY ' '
+#define WALL '*'
+#define ROUTE '+'
+#define PLAYER 'X'
 
 #define TRUE 1
 #define FALSE 0
