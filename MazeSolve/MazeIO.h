@@ -34,4 +34,8 @@ char** readBoardAndExit(FILE* mazeTxtP, struct Size* sizeP, struct Point** exitP
 
 int onBoarder(struct Point* pP, struct Size* sP);
 
+void freeMaze(struct Maze* mazeP);
+
+void freeBoard(char** board, struct Size* sizeP);
+
 #endif /* MazeIO.h */

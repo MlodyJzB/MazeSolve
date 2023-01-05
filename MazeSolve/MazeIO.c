@@ -97,3 +97,16 @@ int onBoarder(struct Point* pP, struct Size* sP) {
 		return TRUE;
 	return FALSE;
 }
+
+void freeMaze(struct Maze* mazeP) {
+	freeBoard(mazeP->board, mazeP->sizeP);
+	free(mazeP->exitP);
+	free(mazeP->sizeP);
+}
+
+void freeBoard(char** board, struct Size* sizeP) {
+	for (int i = 0; i < sizeP->width; i++)
+	{
+		free(board[i]);
+	}
+}
