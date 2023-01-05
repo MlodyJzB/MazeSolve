@@ -15,5 +15,19 @@ int main()
 		exit(1);
 	}
 	struct Maze* mazeP = readMaze(mazeTxtP);
+	fclose(mazeTxtP);
+
+	printf("Initial maze:\n\n");
 	printMazeBoard(mazeP);
+	printf("\n");
+
+	if (findRouteFromExit(mazeP, mazeP->exitP)) {
+		printf("Solved maze:\n\n");
+		printMazeBoard(mazeP);
+	}
+	else {
+		printf("It is impossible to solve the given maze!");
+	}
+
+	freeMaze(mazeP);
 }
