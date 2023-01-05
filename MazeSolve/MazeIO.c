@@ -13,7 +13,6 @@ void initPoint(struct Point* pointP, int x, int y) {
 
 struct Maze* readMaze(FILE* mazeTxtP) {
 	struct Size* sizeP = boardSizeFromFile(mazeTxtP);
-
 	struct Point* exitP = (struct Point*)malloc(sizeof(struct Point));
 	char** board = readBoardAndExit(mazeTxtP, sizeP, &exitP);
 
@@ -22,7 +21,7 @@ struct Maze* readMaze(FILE* mazeTxtP) {
 	return mazeP;
 }
 
-void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, struct size* sizeP) {
+void initMaze(struct Maze* mazeP, struct Point* exitPointP, char** board, struct size* sizeP) {
 	mazeP->board = board;
 	mazeP->exitP = exitPointP;
 	mazeP->sizeP = sizeP;
@@ -108,5 +107,14 @@ void freeBoard(char** board, struct Size* sizeP) {
 	for (int i = 0; i < sizeP->width; i++)
 	{
 		free(board[i]);
+	}
+}
+
+void printMazeBoard(struct Maze* mazeP) {
+	for (int y = 0; y < mazeP->sizeP->height; y++) {
+		for (int x = 0; x < mazeP->sizeP->width; x++) {
+			printf("%c", mazeP->board[x][y]);
+		}
+		printf("\n");
 	}
 }

@@ -14,6 +14,6 @@ int main()
 		printf("Missing maze.txt");
 		exit(1);
 	}
-	struct Maze* maze= readMaze(mazeTxtP);
-	printf("x = %d, y = %d", maze->exitP->x, maze->exitP->y);
+	struct Maze* mazeP = readMaze(mazeTxtP);
+	printMazeBoard(mazeP);
 }

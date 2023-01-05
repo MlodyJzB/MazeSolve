@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 struct Maze {
-	int** board;
+	char** board;
 	struct Point* exitP;
 	struct Size* sizeP;
 };
@@ -24,7 +24,7 @@ void initPoint(struct Point* pointP, int x, int y);
 
 struct Maze* readMaze(FILE* mazeTxtP);
 
-void initMaze(struct Maze* mazeP, struct Point* exitPointP, int** board, struct size* sizeP);
+void initMaze(struct Maze* mazeP, struct Point* exitPointP, char** board, struct size* sizeP);
 
 struct Size* boardSizeFromFile(FILE* mazeTxtP);
 
@@ -37,5 +37,7 @@ int onBoarder(struct Point* pP, struct Size* sP);
 void freeMaze(struct Maze* mazeP);
 
 void freeBoard(char** board, struct Size* sizeP);
+
+void printMazeBoard(struct Maze* mazeP);
 
 #endif /* MazeIO.h */
