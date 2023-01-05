@@ -6,7 +6,7 @@
 
 #define EMPTY ' '
 #define WALL '*'
-#define ROUTE '+'
+#define ROUTE '$'
 #define PLAYER 'X'
 
 #define TRUE 1
