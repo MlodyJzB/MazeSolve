@@ -4,9 +4,6 @@
 #include "../MazeSolve/MazeSolve.h"
 #include "../MazeSolve/MazeIO.h"
 
-#define W 2
-#define H 2
-
 int main()
 {
 	FILE* mazeTxtP;
